@@ -15,7 +15,7 @@ const MessagePreview = ({ name, message }: MessagePreviewProps) => {
             src={`https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${name}}`}
           />
         </Avatar>
-        <h3>{name}</h3>
+        <p className="font-bold text-blue-950">{name}</p>
       </div>
       <p className="text-sm mt-2">{shortenText(message, 170)}</p>
     </div>

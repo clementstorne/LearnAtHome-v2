@@ -1,7 +1,7 @@
 import Task from "@/components/Task";
 import tasks from "@/data/tasks.json";
 
-const TaskList = () => {
+const TasksList = () => {
   return (
     <div>
       {tasks.map((task) => (
@@ -11,4 +11,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default TasksList;

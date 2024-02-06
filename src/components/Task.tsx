@@ -24,7 +24,9 @@ const Task = ({ task, isComplete }: TaskProps) => {
           onClick={completeTask}
         />
       )}
-      <p className={`${isTaskComplete} ? 'line-through' : ''`}>{task}</p>
+      <p className={`${isTaskComplete ? "line-through" : "font-bold"}`}>
+        {task}
+      </p>
     </div>
   );
 };

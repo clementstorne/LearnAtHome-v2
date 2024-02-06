@@ -1,5 +1,6 @@
 import MessagePreview from "@/components/MessagePreview";
-import TaskList from "@/components/TaskList";
+import NextEventsList from "@/components/NextEventsList";
+import TasksList from "@/components/TasksList";
 
 import messages from "@/data/messages.json";
 
@@ -25,10 +26,11 @@ export default function Home() {
       </section>
       <section>
         <h2>Mes prochains événements</h2>
+        <NextEventsList />
       </section>
       <section>
         <h2>Mes tâches</h2>
-        <TaskList />
+        <TasksList />
       </section>
     </main>
   );
