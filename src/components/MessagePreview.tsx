@@ -8,16 +8,16 @@ type MessagePreviewProps = {
 
 const MessagePreview = ({ name, message }: MessagePreviewProps) => {
   return (
-    <div className="flex flex-row flex-nowrap justify-start items-start space-x-4 my-2">
-      <Avatar className="h-20 w-20">
-        <AvatarImage
-          src={`https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${name}}`}
-        />
-      </Avatar>
-      <div className="flex flex-col flex-nowrap space-y-1">
+    <div className="flex flex-col flex-nowrap mb-4">
+      <div className="flex flex-row items-center space-x-4">
+        <Avatar className="h-12 w-12">
+          <AvatarImage
+            src={`https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${name}}`}
+          />
+        </Avatar>
         <h3>{name}</h3>
-        <p className="text-sm">{shortenText(message, 170)}</p>
       </div>
+      <p className="text-sm mt-2">{shortenText(message, 170)}</p>
     </div>
   );
 };

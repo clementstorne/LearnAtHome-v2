@@ -17,7 +17,10 @@ const messages = [
 
 export default function Home() {
   return (
-    <main className="w-full h-full grid grid-rows-2 grid-cols-2  pt-48 pl-36 pr-8">
+    <main
+      className="w-full h-full flex flex-col pt-48 px-8 pb-14 space-y-8 md:space-y-0
+      md:pl-36 md:pr-8 md:pb-0 md:grid md:grid-rows-2 md:grid-cols-2 md:gap-4"
+    >
       <section>
         <h2>Bienvenue Enzo Jodoin</h2>
         <p>Dernière connexion le 11/01/2023 à 13:17</p>

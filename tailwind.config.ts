@@ -11,7 +11,9 @@ const config = {
   prefix: "",
   theme: {
     boxShadow: {
+      none: "0 0 0 0 rgba(0,0,0,0)",
       DEFAULT: "0 10px 20px 0 rgba(0,0,0,0.25)",
+      negative: "0 -10px 20px 0 rgba(0,0,0,0.25)",
     },
     container: {
       center: true,
