@@ -1,0 +1,27 @@
+[
+  {
+    "id": "c57b94f6-ff7c-43d0-a4e1-9ffbb8354739",
+    "label": "Réviser les verbes irréguliers en anglais",
+    "isComplete": false
+  },
+  {
+    "id": "89801506-33d3-4d4e-a5f9-2f661dbf7329",
+    "label": "Faire le DM de mathématiques",
+    "isComplete": false
+  },
+  {
+    "id": "58057b53-b0ca-4e08-a8f1-b45376e5617b",
+    "label": "Apprendre le vocabulaire en espagnol",
+    "isComplete": true
+  },
+  {
+    "id": "99f694b3-6def-420a-b5bd-06651f875394",
+    "label": "Lire Dom Juan de Molière",
+    "isComplete": true
+  },
+  {
+    "id": "9bda1ff3-a8d2-4be4-9c19-84d6f6bb4e62",
+    "label": "Compléter la frise chronologique",
+    "isComplete": true
+  }
+]

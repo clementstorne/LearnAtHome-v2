@@ -11,6 +11,7 @@ const Header = () => {
           alt="Learn@Home - Soutien scolaire en ligne pour tous"
           width={225}
           height={160}
+          priority={true}
         />
       </Link>
     </header>

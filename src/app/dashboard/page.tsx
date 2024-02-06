@@ -1,24 +1,12 @@
 import MessagePreview from "@/components/MessagePreview";
+import TaskList from "@/components/TaskList";
 
-const messages = [
-  {
-    id: "9e819927-5d73-4630-9ead-977c19e73899",
-    sender: "Denis Chastain",
-    content:
-      "Suspendisse vel felis. Ut lorem lorem, interdum eu, tincidunt sit amet, laoreet vitae, arcu.",
-  },
-  {
-    id: "c13a269d-ad2a-4c25-8c11-9aa5d21a57fc",
-    sender: "Juliette Bechard",
-    content:
-      "Quisque eu mi a augue mollis posuere. Donec  tincidunt, lorem at vestibulum pulvinar, felis purus sit amet accumsan. Mauris et diam mattis, placerat magna non, hendrerit tellus. Maecenas sem leo, cursus vel venenatis…",
-  },
-];
+import messages from "@/data/messages.json";
 
 export default function Home() {
   return (
     <main
-      className="w-full h-full flex flex-col pt-48 px-8 pb-14 space-y-8 md:space-y-0
+      className="w-full h-full flex flex-col pt-48 px-8 pb-20 space-y-8 md:space-y-0
       md:pl-36 md:pr-8 md:pb-0 md:grid md:grid-rows-2 md:grid-cols-2 md:gap-4"
     >
       <section>
@@ -40,6 +28,7 @@ export default function Home() {
       </section>
       <section>
         <h2>Mes tâches</h2>
+        <TaskList />
       </section>
     </main>
   );
