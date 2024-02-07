@@ -1,11 +1,17 @@
 import Task from "@/components/Task";
-import tasks from "@/data/tasks.json";
+import tasksList from "@/data/tasks.json";
 
-const TasksList = () => {
+type TaskListProps = {
+  userId: string;
+};
+
+const TasksList = ({ userId }: TaskListProps) => {
+  const tasks = tasksList.filter((task) => task.ownerId === userId);
+
   return (
     <div>
       {tasks.map((task) => (
-        <Task key={task.id} task={task.label} isComplete={task.isComplete} />
+        <Task key={task.id} content={task.content} isDone={task.isDone} />
       ))}
     </div>
   );

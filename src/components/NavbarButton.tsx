@@ -4,12 +4,13 @@ import {
   ListTodo,
   LogOut,
   MessageCircleMore,
+  User,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
 type NavbarButtonProps = {
-  category: "home" | "message" | "calendar" | "task" | "logout";
+  category: "home" | "profile" | "message" | "calendar" | "task" | "logout";
   href: string;
   className?: string;
 };
@@ -19,6 +20,8 @@ const NavbarButton = ({ category, href, className }: NavbarButtonProps) => {
     switch (category) {
       case "home":
         return <Home />;
+      case "profile":
+        return <User />;
       case "message":
         return <MessageCircleMore />;
       case "calendar":

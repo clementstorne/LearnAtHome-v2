@@ -1,0 +1,34 @@
+[
+  {
+    "id": "d2ba9146-c73a-4ddf-9c75-379bc28b47d5",
+    "name": "Grégoire Lévesque",
+    "email": "tutor@learnathome.fr",
+    "password": "$2a$10$cbhYairGTtjwGcEbgEhxYOFbZ1heUGZD49tMDMVW6icdkaRoltn3q",
+    "imageUrl": "https://img.freepik.com/photos-gratuite/portrait-homme-blanc-isole_53876-40306.jpg?w=2000",
+    "role": "tutor"
+  },
+  {
+    "id": "f32dfc68-5f36-4a86-bb31-0b07bd5d18c2",
+    "name": "Corinne Tollmache",
+    "email": "tutor2@learnathome.fr",
+    "password": "$2a$10$WXzva5v51BrBH6wcaZAi7u5J2DAg9hk7KrSmDDbAHIFsFBdW1mzeu",
+    "imageUrl": "https://media.istockphoto.com/id/682897825/fr/photo/confident-businesswoman-over-gray-background.jpg?s=612x612&w=0&k=20&c=OcDGuIswfOhS21Fwg_uxb6O8MXEQK5IrjMqkguihdAk=",
+    "role": "tutor"
+  },
+  {
+    "id": "b6566e5b-60d3-4e7e-8771-831e155d6c49",
+    "name": "Alexis Hébert",
+    "email": "student@learnathome.fr",
+    "password": "$2a$10$ALnZtsQi1MSVXGOkIKj0quJF00eUmuTDqXQSIZkMguG4f7dDUtsyS",
+    "imageUrl": "https://media.gettyimages.com/id/1143465395/fr/photo/portrait-of-a-young-man.jpg?s=612x612&w=gi&k=20&c=aQTcp3P7o-N08Zwl_Y_3jyagnMhtKQ41v6wdSaTeXFQ=",
+    "role": "student"
+  },
+  {
+    "id": "f4ef1c03-141d-49fd-8585-56721168a5ae",
+    "name": "Judith Fontaine",
+    "email": "student2@learnathome.fr",
+    "password": "$2a$10$PmtdHPiwn5BbJpVOLiPBQOBAJ7RNgKbaGcNuwdYDlfKhnG1m8Q.Au",
+    "imageUrl": "https://dvyvvujm9h0uq.cloudfront.net/com/articles/1525891879-382982-janko-ferlic-223231-unsplashjpg.jpg",
+    "role": "student"
+  }
+]

@@ -1,7 +1,13 @@
 import NextEvent from "@/components/NextEvent";
-import events from "@/data/events.json";
+import eventsList from "@/data/events.json";
 
-const NextEventsList = () => {
+type NextEventsListProps = {
+  userId: string;
+};
+
+const NextEventsList = ({ userId }: NextEventsListProps) => {
+  const events = eventsList.filter((event) => event.ownerId === userId);
+
   return (
     <div>
       {events.map((event) => (

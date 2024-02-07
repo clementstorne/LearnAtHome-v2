@@ -3,6 +3,12 @@ import NextEventsList from "@/components/NextEventsList";
 import TasksList from "@/components/TasksList";
 
 import messages from "@/data/messages.json";
+import users from "@/data/users.json";
+
+const user = users.filter(
+  (user) => user.id === "b6566e5b-60d3-4e7e-8771-831e155d6c49"
+  // (user) => user.id === "f4ef1c03-141d-49fd-8585-56721168a5ae"
+)[0];
 
 export default function Home() {
   return (
@@ -11,7 +17,7 @@ export default function Home() {
       md:pl-36 md:pr-8 md:pb-0 md:grid md:grid-rows-2 md:grid-cols-2 md:gap-4"
     >
       <section>
-        <h2>Bienvenue Enzo Jodoin</h2>
+        <h2>Bienvenue {user.name}</h2>
         <p>Dernière connexion le 11/01/2023 à 13:17</p>
       </section>
       <section>
@@ -26,11 +32,11 @@ export default function Home() {
       </section>
       <section>
         <h2>Mes prochains événements</h2>
-        <NextEventsList />
+        <NextEventsList userId={user.id} />
       </section>
       <section>
         <h2>Mes tâches</h2>
-        <TasksList />
+        <TasksList userId={user.id} />
       </section>
     </main>
   );

@@ -3,12 +3,12 @@ import { CheckCircle2, Circle } from "lucide-react";
 import { useState } from "react";
 
 type TaskProps = {
-  isComplete: boolean;
-  task: string;
+  content: string;
+  isDone: boolean;
 };
 
-const Task = ({ task, isComplete }: TaskProps) => {
-  const [isTaskComplete, setIsTaskComplete] = useState(isComplete);
+const Task = ({ content, isDone }: TaskProps) => {
+  const [isTaskComplete, setIsTaskComplete] = useState(isDone);
 
   const completeTask = () => {
     setIsTaskComplete(true);
@@ -25,7 +25,7 @@ const Task = ({ task, isComplete }: TaskProps) => {
         />
       )}
       <p className={`${isTaskComplete ? "line-through" : "font-bold"}`}>
-        {task}
+        {content}
       </p>
     </div>
   );

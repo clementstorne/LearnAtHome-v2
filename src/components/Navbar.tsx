@@ -7,6 +7,7 @@ const Navbar = () => {
       md:w-28 md:top-40 md:flex-col md:border-r-2 md:justify-center md:my-8 md:bg-transparent md:shadow-none"
     >
       <NavbarButton category="home" href="/dashboard" />
+      <NavbarButton category="profile" href="/profile" />
       <NavbarButton category="message" href="/messages" />
       <NavbarButton category="calendar" href="/calendar" />
       <NavbarButton category="task" href="/dashboard/tasks" />
