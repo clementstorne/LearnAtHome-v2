@@ -10,9 +10,10 @@ const TasksList = ({ userId }: TaskListProps) => {
 
   return (
     <div>
-      {tasks.map((task) => (
-        <Task key={task.id} content={task.content} isDone={task.isDone} />
-      ))}
+      {tasks &&
+        tasks.map((task) => (
+          <Task key={task.id} content={task.content} isDone={task.isDone} />
+        ))}
     </div>
   );
 };

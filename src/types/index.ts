@@ -7,10 +7,9 @@ export interface User {
   role: "tutor" | "student";
 }
 
-export interface Task {
+export interface TaskData {
   id: string;
   content: string;
   isDone: boolean;
   ownerId: string;
-  creatorId: string;
 }
