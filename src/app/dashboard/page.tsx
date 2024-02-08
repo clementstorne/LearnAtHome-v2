@@ -1,6 +1,6 @@
+import TasksSection from "@/app/dashboard/components/TasksSection";
 import MessagePreview from "@/components/MessagePreview";
 import NextEventsList from "@/components/NextEventsList";
-import TasksList from "@/components/TasksList";
 
 import messages from "@/data/messages.json";
 import users from "@/data/users.json";
@@ -34,10 +34,7 @@ export default function Home() {
         <h2>Mes prochains événements</h2>
         <NextEventsList userId={user.id} />
       </section>
-      <section>
-        <h2>Mes tâches</h2>
-        <TasksList userId={user.id} />
-      </section>
+      <TasksSection userId={user.id} />
     </main>
   );
 }

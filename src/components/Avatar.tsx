@@ -3,11 +3,12 @@ import { getInitials } from "@/lib/stringUtils";
 
 type UserAvatarProps = {
   name: string;
+  className?: string;
 };
 
-const UserAvatar = ({ name }: UserAvatarProps) => {
+const UserAvatar = ({ name, className }: UserAvatarProps) => {
   return (
-    <Avatar className="h-12 w-12">
+    <Avatar className={className ? `${className}` : "h-12 w-12"}>
       <AvatarImage
         src={`https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${name}}`}
       />
