@@ -29,4 +29,9 @@
   p {
     @apply leading-5;
   }
+
+  a {
+    @apply text-blue-950 font-semibold text-sm
+    after:block after:border-b-2 after:border-blue-950 after:scale-x-0 after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100;
+  }
 }

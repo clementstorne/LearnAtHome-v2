@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-screen h-40 z-40 bg-blue-950 flex justify-center items-center shadow">
       <h1 className="hidden">Learn@Home</h1>
-      <Link href="/dashboard">
+      <Link href="/dashboard" className="after:border-0">
         <Image
           src={"/Learn@Home.svg"}
           alt="Learn@Home - Soutien scolaire en ligne pour tous"

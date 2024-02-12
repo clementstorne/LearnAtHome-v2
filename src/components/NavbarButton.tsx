@@ -36,8 +36,7 @@ const NavbarButton = ({ category, href, className }: NavbarButtonProps) => {
   return (
     <Button
       asChild
-      className={`${className} rounded-full bg-orange-600 text-black hover:bg-white border-4 border-orange-600 hover:text-black h-10
-      md:w-16 md:h-16 md:my-4`}
+      className={`${className} rounded-full h-10 md:w-16 md:h-16 md:my-4`}
     >
       <Link href={href}>{getIcon(category)}</Link>
     </Button>

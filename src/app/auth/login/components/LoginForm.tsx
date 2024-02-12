@@ -69,7 +69,7 @@ const LoginForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="ml-2">Email</FormLabel>
               <FormControl>
                 <Input type="email" {...field} className="w-80" />
               </FormControl>
@@ -82,7 +82,7 @@ const LoginForm = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Mot de passe</FormLabel>
+              <FormLabel className="ml-2">Mot de passe</FormLabel>
               <FormControl>
                 <Input type="password" {...field} className="w-80" />
               </FormControl>
@@ -90,7 +90,7 @@ const LoginForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="bg-blue-950 w-60">
+        <Button type="submit" className="w-60 !m-16">
           Se connecter
         </Button>
       </form>

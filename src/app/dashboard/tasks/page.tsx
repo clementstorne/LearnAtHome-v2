@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import users from "@/data/users.json";
+import { ListPlus } from "lucide-react";
 import TaskListTitle from "./components/TaskListTitle";
 import TasksList from "./components/TasksList";
 
@@ -14,7 +15,11 @@ const page = () => {
         <TaskListTitle user={user} />
       </section>
       <section className="w-2/3 h-full pl-8">
-        <Button className="bg-blue-950 mb-4">Ajouter une nouvelle tâche</Button>
+        <Button className="mb-8">
+          <span className="flex items-center">
+            <ListPlus className="mr-2" /> Ajouter une nouvelle tâche
+          </span>
+        </Button>
         <TasksList userId={user.id} />
       </section>
     </main>
