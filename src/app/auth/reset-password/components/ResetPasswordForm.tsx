@@ -23,35 +23,13 @@ const formSchema = z.object({
     .email({
       message: "Cet email n'est pas valide",
     }),
-  password: z
-    .string({
-      required_error: "Le mot de passe est requis",
-    })
-    .min(8, { message: "Le mot de passe doit contenir au moins 8 caractères" })
-    .refine(
-      (value) => /(?=.*\d)/.test(value),
-      "Le mot de passe doit contenir au moins un chiffre"
-    )
-    .refine(
-      (value) => /(?=.*[a-z])/.test(value),
-      "Le mot de passe doit contenir au moins une minuscule"
-    )
-    .refine(
-      (value) => /(?=.*[A-Z])/.test(value),
-      "Le mot de passe doit contenir au moins une majuscule"
-    )
-    .refine(
-      (value) => /(?=.*[\W|_])/.test(value),
-      "Le mot de passe doit contenir au moins un caractère spécial"
-    ),
 });
 
-const LoginForm = () => {
+const ResetPasswordForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
@@ -78,19 +56,6 @@ const LoginForm = () => {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="ml-2">Mot de passe</FormLabel>
-              <FormControl>
-                <Input type="password" {...field} className="w-80" />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
         <Button type="submit" className="w-60 !m-16">
           Se connecter
         </Button>
@@ -99,4 +64,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default ResetPasswordForm;
