@@ -3,14 +3,16 @@ import MessagePreview from "@/components/MessagePreview";
 import NextEventsList from "@/components/NextEventsList";
 
 import messages from "@/data/messages.json";
-import users from "@/data/users.json";
+import { getUser } from "@/lib/dataUser";
 
-const user = users.filter(
-  (user) => user.id === "b6566e5b-60d3-4e7e-8771-831e155d6c49"
-  // (user) => user.id === "f4ef1c03-141d-49fd-8585-56721168a5ae"
-)[0];
+const id = "b6566e5b-60d3-4e7e-8771-831e155d6c49";
+// const id = "f4ef1c03-141d-49fd-8585-56721168a5ae";
 
-export default function Home() {
+const ONE_HOUR = 60 * 60;
+export const revalidate = ONE_HOUR;
+
+export default async function Home() {
+  const user = await getUser(id);
   return (
     <main
       className="w-full h-full flex flex-col pt-48 px-8 pb-20 space-y-8 md:space-y-0
@@ -19,6 +21,7 @@ export default function Home() {
       <section>
         <h2>Bienvenue {user.name}</h2>
         <p>Dernière connexion le 11/01/2023 à 13:17</p>
+        {/* {userList.map((user) => )} */}
       </section>
       <section>
         <h2>Mes messages non lus</h2>

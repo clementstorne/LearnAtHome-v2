@@ -1,13 +1,13 @@
 import Task from "@/components/Task";
-import tasksList from "@/data/tasks.json";
+import { getTasks } from "@/lib/dataTask";
 import { countUnfinishedTasks, filterUnfinishedTasks } from "@/lib/taskUtils";
 
 type TasksSectionProps = {
   userId: string;
 };
 
-const TasksSection = ({ userId }: TasksSectionProps) => {
-  const tasks = tasksList.filter((task) => task.ownerId === userId);
+const TasksSection = async ({ userId }: TasksSectionProps) => {
+  const tasks = await getTasks(userId);
   const unfinishedTasks = filterUnfinishedTasks(tasks);
   const numberOfUnfinishedTasks = countUnfinishedTasks(tasks);
 
@@ -22,7 +22,12 @@ const TasksSection = ({ userId }: TasksSectionProps) => {
       ) : (
         <div className="flex flex-col">
           {unfinishedTasks.map((task) => (
-            <Task key={task.id} content={task.content} isDone={task.isDone} />
+            <Task
+              key={task.id}
+              id={task.id}
+              content={task.content}
+              isDone={task.isDone}
+            />
           ))}
         </div>
       )}
