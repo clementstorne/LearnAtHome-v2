@@ -1,3 +1,8 @@
+import {
+  EMAIL_ALREADY_USED,
+  MISSING_PARAMETER,
+  SERVER_ERROR,
+} from "@/lib/errorMessages";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
@@ -14,8 +19,7 @@ export async function GET() {
     return Response.json({ message: "Successfully got all users.", users });
   } catch (error) {
     return Response.json({
-      message:
-        "The server encountered an unexpected condition that prevented it from fulfilling the request. Please try again later or contact the administrator.",
+      message: SERVER_ERROR,
       error,
     });
   }
@@ -34,18 +38,32 @@ export async function POST(req: NextRequest) {
   if (!name || !email || !password || !role) {
     return new NextResponse(
       JSON.stringify({
-        error:
-          "The server could not process the request because a required parameter is missing. Please include all necessary parameters and try again.",
+        error: MISSING_PARAMETER,
       }),
       { status: 400 }
     );
   }
 
-  const hashedPassword = bcrypt.hashSync(password, 10);
-  const nameForAvatar = name.split(" ").join("");
-  const imageUrl = `https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${nameForAvatar}}`;
-
   try {
+    const userAlreadyExists = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (userAlreadyExists) {
+      return new NextResponse(
+        JSON.stringify({
+          error: EMAIL_ALREADY_USED,
+        }),
+        { status: 409 }
+      );
+    }
+
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    const nameForAvatar = name.split(" ").join("");
+    const imageUrl = `https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${nameForAvatar}}`;
+
     const newUser = await prisma.user.create({
       data: {
         name,
@@ -69,8 +87,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error("Prisma error:", error);
     return Response.json({
-      message:
-        "The server encountered an unexpected condition that prevented it from fulfilling the request. Please try again later or contact the administrator.",
+      message: SERVER_ERROR,
       error,
     });
   }
