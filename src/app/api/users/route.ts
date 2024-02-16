@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma";
+import bcrypt from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -27,6 +28,10 @@ type NewUserBody = {
   role: "tutor" | "student";
 };
 
+export const hashPassword = (password: string) => {
+  return bcrypt.hashSync(password, 10);
+};
+
 export async function POST(req: NextRequest) {
   try {
     const { name, email, password, role }: NewUserBody = await req.json();
@@ -41,15 +46,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const hashedPassword = hashPassword(password);
     const imageUrl = `https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${name}}`;
 
     const newUser = await prisma.user.create({
       data: {
         name,
         email,
-        password,
+        password: hashedPassword,
         imageUrl,
         role,
+      },
+      select: {
+        name: true,
+        email: true,
+        imageUrl: true,
+        role: true,
       },
     });
 
