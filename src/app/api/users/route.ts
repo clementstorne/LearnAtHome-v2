@@ -28,27 +28,24 @@ type NewUserBody = {
   role: "tutor" | "student";
 };
 
-export const hashPassword = (password: string) => {
-  return bcrypt.hashSync(password, 10);
-};
-
 export async function POST(req: NextRequest) {
+  const { name, email, password, role }: NewUserBody = await req.json();
+
+  if (!name || !email || !password || !role) {
+    return new NextResponse(
+      JSON.stringify({
+        error:
+          "The server could not process the request because a required parameter is missing. Please include all necessary parameters and try again.",
+      }),
+      { status: 400 }
+    );
+  }
+
+  const hashedPassword = bcrypt.hashSync(password, 10);
+  const nameForAvatar = name.split(" ").join("");
+  const imageUrl = `https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${nameForAvatar}}`;
+
   try {
-    const { name, email, password, role }: NewUserBody = await req.json();
-
-    if (!name || !email || !password || !role) {
-      return new NextResponse(
-        JSON.stringify({
-          error:
-            "The server could not process the request because a required parameter is missing. Please include all necessary parameters and try again.",
-        }),
-        { status: 400 }
-      );
-    }
-
-    const hashedPassword = hashPassword(password);
-    const imageUrl = `https://api.dicebear.com/7.x/big-ears-neutral/svg?seed=${name}}`;
-
     const newUser = await prisma.user.create({
       data: {
         name,
