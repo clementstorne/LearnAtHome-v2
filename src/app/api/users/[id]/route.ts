@@ -126,3 +126,57 @@ export async function PATCH(req: NextRequest) {
     );
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  const userId = req.nextUrl.pathname.split("/users/")[1];
+
+  if (!userId) {
+    return Response.json(
+      {
+        error: MISSING_PARAMETER,
+      },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+      select: {
+        name: true,
+        email: true,
+        role: true,
+      },
+    });
+
+    if (!user) {
+      return Response.json(
+        {
+          error: "User not found",
+        },
+        { status: 404 }
+      );
+    } else {
+      await prisma.user.delete({
+        where: {
+          id: userId,
+        },
+      });
+
+      return Response.json(
+        { message: "Successfully deleted user." },
+        { status: 200 }
+      );
+    }
+  } catch (error) {
+    return Response.json(
+      {
+        message: SERVER_ERROR,
+        error,
+      },
+      { status: 500 }
+    );
+  }
+}
