@@ -1,5 +1,5 @@
 "use client";
-import { updateTask } from "@/lib/dataTask";
+import TasksService from "@/app/services/TasksService";
 import { CheckCircle2, Circle } from "lucide-react";
 import { useState } from "react";
 
@@ -12,9 +12,9 @@ type TaskProps = {
 const Task = ({ id, content, isDone }: TaskProps) => {
   const [isTaskComplete, setIsTaskComplete] = useState(isDone);
 
-  const completeTask = () => {
-    setIsTaskComplete(true);
-    updateTask(id);
+  const completeTask = async () => {
+    await TasksService.updateTask(id, { isDone: !isTaskComplete });
+    setIsTaskComplete((isDone) => !isDone);
   };
 
   return (

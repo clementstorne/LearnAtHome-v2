@@ -19,20 +19,3 @@ export const getTasks = cache(async (userId: string) => {
   });
   return tasks;
 });
-
-export const updateTask = async (id: string) => {
-  const updatedTask = await prisma.task.update({
-    where: {
-      id: id,
-    },
-    data: {
-      isDone: true,
-    },
-    select: {
-      id: true,
-      content: true,
-      isDone: true,
-    },
-  });
-  return updatedTask;
-};

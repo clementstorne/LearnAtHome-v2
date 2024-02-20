@@ -1,5 +1,6 @@
 import { MISSING_PARAMETER, SERVER_ERROR } from "@/lib/errorMessages";
 import prisma from "@/lib/prisma";
+import { NewTaskBody } from "@/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET() {
@@ -19,11 +20,6 @@ export async function GET() {
     });
   }
 }
-
-type NewTaskBody = {
-  content: string;
-  ownerId: string;
-};
 
 export async function POST(req: NextRequest) {
   const { content, ownerId }: NewTaskBody = await req.json();
