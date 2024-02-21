@@ -1,25 +1,24 @@
 import UserAvatar from "@/components/Avatar";
-import tasksList from "@/data/tasks.json";
-import { countUnfinishedTasks } from "@/lib/taskUtils";
+import { getTasksFromTaskListId } from "@/lib/dataTask";
+import { getUserNameAndAvatar } from "@/lib/dataUser";
+import { displayNumberOfUnfinishedTasks } from "@/lib/taskUtils";
 
 type TaskListTitleProps = {
-  user: any;
+  userId: string;
+  taskListId: string;
 };
 
-const TaskListTitle = ({ user }: TaskListTitleProps) => {
-  const tasks = tasksList.filter((task) => task.ownerId === user.id);
-  const numberOfUnfinishedTasks = countUnfinishedTasks(tasks);
+const TaskListTitle = async ({ userId, taskListId }: TaskListTitleProps) => {
+  const tasks = await getTasksFromTaskListId(taskListId);
+
+  const user = await getUserNameAndAvatar(userId);
 
   return (
     <div className="bg-blue-200 p-2 mb-4 flex items-center hover:border-4 hover:border-orange-600 hover:p-1">
-      <UserAvatar name={user.name} />
+      <UserAvatar name={user.name} src={user.imageUrl} />
       <div className="ml-4 flex flex-col">
         <p className="text-blue-950 font-bold">{user.name}</p>
-        <p>
-          {numberOfUnfinishedTasks === 0
-            ? "numberOfUnfinishedTasks"
-            : `${numberOfUnfinishedTasks} tâches à terminer`}
-        </p>
+        <p>{displayNumberOfUnfinishedTasks(tasks)}</p>
       </div>
     </div>
   );

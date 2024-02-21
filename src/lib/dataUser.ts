@@ -16,3 +16,17 @@ export const getUser = cache(async (id: string) => {
   });
   return user;
 });
+
+export const getUserNameAndAvatar = cache(async (id: string) => {
+  const user = await prisma.user.findUniqueOrThrow({
+    where: {
+      id: id,
+    },
+    select: {
+      name: true,
+      imageUrl: true,
+      role: true,
+    },
+  });
+  return user;
+});

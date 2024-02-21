@@ -1,18 +1,26 @@
 import { Button } from "@/components/ui/button";
-import users from "@/data/users.json";
+import { getTaskLists } from "@/lib/dataTask";
+import { formatTaskListData } from "@/lib/taskUtils";
 import { ListPlus } from "lucide-react";
 import TaskListTitle from "./components/TaskListTitle";
 import TasksList from "./components/TasksList";
 
-const user = users.filter(
-  (user) => user.id === "b6566e5b-60d3-4e7e-8771-831e155d6c49"
-)[0];
+const userId = "b6566e5b-60d3-4e7e-8771-831e155d6c49";
 
-const page = () => {
+const page = async () => {
+  const data = await getTaskLists(userId);
+  const taskList = formatTaskListData(data);
+
   return (
     <main className="w-full h-full pt-48 px-8 md:pl-36 md:pr-8 flex">
       <section className="w-1/3 h-full border-r-2 pr-8 mb-8">
-        <TaskListTitle user={user} />
+        {taskList.map((list) => (
+          <TaskListTitle
+            key={list.taskListId}
+            userId={list.userId}
+            taskListId={list.taskListId}
+          />
+        ))}
       </section>
       <section className="w-2/3 h-full pl-8">
         <Button className="mb-8">
@@ -20,7 +28,7 @@ const page = () => {
             <ListPlus className="mr-2" /> Ajouter une nouvelle tâche
           </span>
         </Button>
-        <TasksList userId={user.id} />
+        <TasksList userId={userId} />
       </section>
     </main>
   );
