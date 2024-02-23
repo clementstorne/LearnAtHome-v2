@@ -41,18 +41,22 @@ export const getTaskLists = cache(async (userId: string) => {
     },
   });
 
-  const taskListIds = user?.tasks.map((item) => item.taskListId);
+  if (user) {
+    const taskListIds = user.tasks.map((item) => item.taskListId);
 
-  const taskLists = await prisma.user_TaskList.findMany({
-    where: {
-      taskListId: { in: taskListIds },
-    },
-    select: {
-      userId: true,
-      taskListId: true,
-    },
-  });
-  return taskLists;
+    const taskLists = await prisma.user_TaskList.findMany({
+      where: {
+        taskListId: { in: taskListIds },
+      },
+      select: {
+        userId: true,
+        taskListId: true,
+      },
+    });
+    return taskLists;
+  } else {
+    throw new Error("userId doesn't exists");
+  }
 });
 
 export const getTasksFromTaskListId = cache(async (taskListId: string) => {

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { getTaskLists } from "@/lib/dataTask";
-import { formatTaskListData } from "@/lib/taskUtils";
+import { filterTaskListData } from "@/lib/taskUtils";
 import { ListPlus } from "lucide-react";
 import TaskListTitle from "./components/TaskListTitle";
 import TasksList from "./components/TasksList";
@@ -9,7 +9,7 @@ const userId = "b6566e5b-60d3-4e7e-8771-831e155d6c49";
 
 const page = async () => {
   const data = await getTaskLists(userId);
-  const taskList = formatTaskListData(data);
+  const taskList = filterTaskListData(data, userId);
 
   return (
     <main className="w-full h-full pt-48 px-8 md:pl-36 md:pr-8 flex">

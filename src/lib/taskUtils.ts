@@ -28,19 +28,18 @@ type UserTaskList = {
   taskListId: string;
 };
 
-export const formatTaskListData = (data: UserTaskList[]) => {
-  const filteredResult = {};
-  const result = [];
-
-  for (const item of data) {
-    if (!filteredResult[item.taskListId]) {
-      filteredResult[item.taskListId] = item;
+export const filterTaskListData = (
+  data: UserTaskList[],
+  userIdToRemove: string
+) => {
+  return data.filter((item) => {
+    if (item.userId === userIdToRemove) {
+      return !data.some(
+        (otherItem) =>
+          otherItem.taskListId === item.taskListId &&
+          otherItem.userId !== userIdToRemove
+      );
     }
-  }
-
-  for (const key in filteredResult) {
-    result.push(filteredResult[key]);
-  }
-
-  return result;
+    return true;
+  });
 };
