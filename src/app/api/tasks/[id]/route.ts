@@ -1,6 +1,5 @@
 import { MISSING_PARAMETER, SERVER_ERROR } from "@/lib/errorMessages";
 import prisma from "@/lib/prisma";
-import { UpdateTaskBody } from "@/types";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
