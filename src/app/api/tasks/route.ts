@@ -9,7 +9,7 @@ export async function GET() {
       select: {
         content: true,
         isDone: true,
-        ownerId: true,
+        taskListId: true,
       },
     });
     return Response.json({ message: "Successfully got all tasks.", tasks });
@@ -21,10 +21,15 @@ export async function GET() {
   }
 }
 
-export async function POST(req: NextRequest) {
-  const { content, ownerId }: NewTaskBody = await req.json();
+type NewTaskBody = {
+  content: string;
+  taskListId: string;
+};
 
-  if (!content || !ownerId) {
+export async function POST(req: NextRequest) {
+  const { content, taskListId }: NewTaskBody = await req.json();
+
+  if (!content || !taskListId) {
     return new NextResponse(
       JSON.stringify({
         error: MISSING_PARAMETER,
@@ -38,12 +43,12 @@ export async function POST(req: NextRequest) {
       data: {
         content,
         isDone: false,
-        ownerId,
+        taskListId,
       },
       select: {
         content: true,
         isDone: true,
-        ownerId: true,
+        taskListId: true,
       },
     });
 

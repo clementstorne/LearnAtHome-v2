@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
       select: {
         content: true,
         isDone: true,
-        ownerId: true,
+        taskListId: true,
       },
     });
 
@@ -51,6 +51,10 @@ export async function GET(req: NextRequest) {
   }
 }
 
+type UpdateTaskBody = {
+  isDone: boolean;
+};
+
 export async function PATCH(req: NextRequest) {
   const taskId = req.nextUrl.pathname.split("/tasks/")[1];
 
@@ -74,7 +78,7 @@ export async function PATCH(req: NextRequest) {
       select: {
         content: true,
         isDone: true,
-        ownerId: true,
+        taskListId: true,
       },
     });
 

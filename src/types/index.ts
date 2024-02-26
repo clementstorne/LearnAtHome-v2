@@ -11,12 +11,3 @@ export interface TaskData {
   content: string;
   isDone: boolean;
 }
-
-export interface NewTaskBody {
-  content: string;
-  ownerId: string;
-}
-
-export interface UpdateTaskBody {
-  isDone: boolean;
-}
