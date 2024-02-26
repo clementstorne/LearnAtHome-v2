@@ -1,5 +1,6 @@
 import { MISSING_PARAMETER, SERVER_ERROR } from "@/lib/errorMessages";
 import prisma from "@/lib/prisma";
+import { UpdateTaskBody } from "@/types";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -49,10 +50,6 @@ export async function GET(req: NextRequest) {
     );
   }
 }
-
-type UpdateTaskBody = {
-  isDone: boolean;
-};
 
 export async function PATCH(req: NextRequest) {
   const taskId = req.nextUrl.pathname.split("/tasks/")[1];

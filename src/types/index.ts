@@ -11,3 +11,12 @@ export interface TaskData {
   content: string;
   isDone: boolean;
 }
+
+export interface NewTaskBody {
+  content: string;
+  taskListId: string;
+}
+
+export interface UpdateTaskBody {
+  isDone: boolean;
+}
