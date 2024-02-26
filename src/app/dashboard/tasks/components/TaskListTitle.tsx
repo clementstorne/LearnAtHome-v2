@@ -1,40 +1,47 @@
+"use client";
+
 import UserAvatar from "@/components/Avatar";
-import Task from "@/components/Task";
-import { getTasksFromTaskListId } from "@/lib/dataTask";
-import { getUserNameAndAvatar } from "@/lib/dataUser";
 import { displayNumberOfUnfinishedTasks } from "@/lib/taskUtils";
+import { TaskData } from "@/types";
+import clsx from "clsx";
+import { useState } from "react";
+import AddTaskButton from "./AddTaskButton";
+import Tasks from "./Tasks";
 
 type TaskListTitleProps = {
-  userId: string;
-  taskListId: string;
+  user: {
+    name: string;
+    imageUrl: string;
+    role: "tutor" | "student";
+  };
+  tasks: TaskData[];
 };
 
-const TaskListTitle = async ({ userId, taskListId }: TaskListTitleProps) => {
-  const tasks = await getTasksFromTaskListId(taskListId);
-
-  const user = await getUserNameAndAvatar(userId);
+const TaskListTitle = ({ user, tasks }: TaskListTitleProps) => {
+  const [isShown, setIsShown] = useState(false);
+  const handleOnClick = () => {
+    setIsShown(!isShown);
+  };
 
   return (
-    <>
-      <div className="cursor-pointer bg-blue-100 p-2 mb-4 rounded-md flex items-center hover:border-4 hover:border-orange-600 hover:p-1">
+    <section className="flex flex-col md:mr-4">
+      <div
+        className="cursor-pointer bg-blue-100 p-2 mb-4 rounded-md flex items-center hover:border-4 hover:border-orange-600 hover:p-1"
+        onClick={handleOnClick}
+      >
         <UserAvatar name={user.name} src={user.imageUrl} />
         <div className="ml-4 flex flex-col">
           <p className="text-blue-950 font-bold">{user.name}</p>
           <p>{displayNumberOfUnfinishedTasks(tasks)}</p>
         </div>
       </div>
-      <div>
-        {tasks &&
-          tasks.map((task) => (
-            <Task
-              key={task.id}
-              id={task.id}
-              content={task.content}
-              isDone={task.isDone}
-            />
-          ))}
+      <div className={clsx(isShown && "block", !isShown && "hidden")}>
+        <div className="flex justify-center items-center mb-8 mt-4">
+          <AddTaskButton />
+        </div>
+        <Tasks tasks={tasks} />
       </div>
-    </>
+    </section>
   );
 };
 

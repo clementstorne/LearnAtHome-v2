@@ -1,21 +1,22 @@
-import Task from "@/components/Task";
-import { getTasks } from "@/lib/dataTask";
+import { getTasksFromTaskListId } from "@/lib/dataTask";
+import { getUserNameAndAvatar } from "@/lib/dataUser";
+import TaskListTitle from "./TaskListTitle";
+import Tasks from "./Tasks";
 
 type TaskListProps = {
   userId: string;
+  taskListId: string;
 };
 
-const TasksList = async ({ userId }: TaskListProps) => {
-  const tasks = await getTasks(userId);
+const TaskList = async ({ userId, taskListId }: TaskListProps) => {
+  const tasks = await getTasksFromTaskListId(taskListId);
+  const user = await getUserNameAndAvatar(userId);
 
   return (
-    <div>
-      {tasks &&
-        tasks.map((task) => (
-          <Task key={task.id} id={task.id} content={task.content} isDone={task.isDone} />
-        ))}
-    </div>
+    <>
+      <TaskListTitle user={user} tasks={tasks} />
+    </>
   );
 };
 
-export default TasksList;
+export default TaskList;
