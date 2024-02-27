@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
   CalendarDays,
   Home,
@@ -36,7 +37,7 @@ const NavbarButton = ({ category, href, className }: NavbarButtonProps) => {
   return (
     <Button
       asChild
-      className={`${className} rounded-full h-10 md:w-16 md:h-16 md:my-4`}
+      className={cn("rounded-full h-10", "md:w-16 md:h-16 md:my-4", className)}
     >
       <Link href={href}>{getIcon(category)}</Link>
     </Button>

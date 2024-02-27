@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
@@ -9,7 +10,7 @@ type LinkButtonProps = {
 
 const LinkButton = ({ href, label, className }: LinkButtonProps) => {
   return (
-    <Button asChild className={`${className} mt-4`}>
+    <Button asChild className={cn("mt-4", className)}>
       <Link href={href}>{label}</Link>
     </Button>
   );

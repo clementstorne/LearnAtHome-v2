@@ -1,5 +1,6 @@
 "use client";
 import TasksService from "@/app/services/TasksService";
+import { cn } from "@/lib/utils";
 import { CheckCircle2, Circle } from "lucide-react";
 import { useState } from "react";
 
@@ -27,7 +28,11 @@ const Task = ({ id, content, isDone }: TaskProps) => {
           onClick={completeTask}
         />
       )}
-      <p className={`${isTaskComplete ? "line-through" : "font-bold"}`}>
+      <p
+        className={cn("font-bold", {
+          "line-through font-normal": isTaskComplete,
+        })}
+      >
         {content}
       </p>
     </div>

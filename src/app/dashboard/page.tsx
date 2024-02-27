@@ -4,6 +4,7 @@ import NextEventsList from "@/components/NextEventsList";
 
 import messages from "@/data/messages.json";
 import { getUser } from "@/lib/dataUser";
+import { cn } from "@/lib/utils";
 
 const id = "b6566e5b-60d3-4e7e-8771-831e155d6c49";
 // const id = "f4ef1c03-141d-49fd-8585-56721168a5ae";
@@ -15,8 +16,10 @@ export default async function Home() {
   const user = await getUser(id);
   return (
     <main
-      className="w-full h-full flex flex-col pt-48 px-8 pb-20 space-y-8 md:space-y-0
-      md:pl-36 md:pr-8 md:pb-0 md:grid md:grid-rows-2 md:grid-cols-2 md:gap-4"
+      className={cn(
+        "w-full h-full flex flex-col pt-48 px-8 pb-20 space-y-8",
+        "md:space-y-0 md:pl-36 md:pr-8 md:pb-0 md:grid md:grid-rows-2 md:grid-cols-2 md:gap-4"
+      )}
     >
       <section>
         <h2>Bienvenue {user.name}</h2>

@@ -1,7 +1,6 @@
 import { getTasksFromTaskListId } from "@/lib/dataTask";
 import { getUserNameAndAvatar } from "@/lib/dataUser";
 import TaskListTitle from "./TaskListTitle";
-import Tasks from "./Tasks";
 
 type TaskListProps = {
   userId: string;

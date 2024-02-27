@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getInitials } from "@/lib/stringUtils";
+import { cn } from "@/lib/utils";
 
 type UserAvatarProps = {
   name: string;
@@ -9,7 +10,7 @@ type UserAvatarProps = {
 
 const UserAvatar = ({ name, src, className }: UserAvatarProps) => {
   return (
-    <Avatar className={className ? `${className}` : "h-12 w-12"}>
+    <Avatar className={cn("h-12 w-12", className)}>
       {src ? (
         <AvatarImage src={src} />
       ) : (

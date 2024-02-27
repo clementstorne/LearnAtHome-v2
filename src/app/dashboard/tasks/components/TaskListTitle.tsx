@@ -2,8 +2,8 @@
 
 import UserAvatar from "@/components/Avatar";
 import { displayNumberOfUnfinishedTasks } from "@/lib/taskUtils";
+import { cn } from "@/lib/utils";
 import { TaskData } from "@/types";
-import clsx from "clsx";
 import { useState } from "react";
 import AddTaskButton from "./AddTaskButton";
 import Tasks from "./Tasks";
@@ -24,7 +24,7 @@ const TaskListTitle = ({ user, tasks }: TaskListTitleProps) => {
   };
 
   return (
-    <section className="flex flex-col md:mr-4">
+    <section className={cn("flex flex-col", "md:mr-4")}>
       <div
         className="cursor-pointer bg-blue-100 p-2 mb-4 rounded-md flex items-center hover:border-4 hover:border-orange-600 hover:p-1"
         onClick={handleOnClick}
@@ -35,7 +35,7 @@ const TaskListTitle = ({ user, tasks }: TaskListTitleProps) => {
           <p>{displayNumberOfUnfinishedTasks(tasks)}</p>
         </div>
       </div>
-      <div className={clsx(isShown && "block", !isShown && "hidden")}>
+      <div className={cn(isShown && "block", !isShown && "hidden")}>
         <div className="flex justify-center items-center mb-8 mt-4">
           <AddTaskButton />
         </div>
