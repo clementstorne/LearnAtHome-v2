@@ -74,8 +74,6 @@ export async function PATCH(req: NextRequest) {
     const { name, email, password, imageUrl }: UpdateUserBody =
       await req.json();
 
-    console.log(name);
-
     const credentials: Partial<UpdateUserBody> = {};
 
     if (name !== undefined) {

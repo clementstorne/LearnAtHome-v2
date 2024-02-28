@@ -9,6 +9,14 @@ import { z } from "zod";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
+  pages: {
+    signIn: "/login",
+    signOut: "/signout",
+    newUser: "/signup",
+  },
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     CredentialsProvider({
       id: "credentials",
@@ -57,13 +65,32 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  pages: {
-    signIn: "/auth/login",
-    signOut: "/auth/signout",
-    newUser: "/auth/signup",
-  },
-  session: {
-    strategy: "jwt",
+  callbacks: {
+    jwt: ({ token, user }) => {
+      if (user) {
+        return {
+          ...token,
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          imageUrl: user.imageUrl,
+          role: user.role,
+        };
+      }
+      return token;
+    },
+    session: ({ session, token }) => {
+      delete session.user.image;
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          role: token.role,
+          imageUrl: token.imageUrl,
+        },
+      };
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

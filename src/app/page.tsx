@@ -15,11 +15,11 @@ export default function Home() {
       />
       <nav className="flex flex-row flex-nowrap justify-between items-center">
         <LinkButton
-          href="/auth/login"
+          href="/login"
           label="J'ai déjà un compte"
           className="mr-4"
         />
-        <LinkButton href="/auth/signup" label="Je veux créer un compte" />
+        <LinkButton href="/signup" label="Je veux créer un compte" />
       </nav>
     </main>
   );

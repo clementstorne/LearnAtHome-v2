@@ -14,7 +14,7 @@ const Navbar = () => {
       <NavbarButton category="message" href="/dashboard/messages" />
       <NavbarButton category="calendar" href="/dashboard/calendar" />
       <NavbarButton category="task" href="/dashboard/tasks" />
-      <NavbarButton category="logout" href="/auth/login" />
+      <NavbarButton category="logout" href="/login" />
     </nav>
   );
 };

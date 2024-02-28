@@ -1,7 +1,5 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -13,6 +11,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -57,13 +57,20 @@ const LoginForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      callbackUrl: "/dashboard",
-    });
-  }
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        callbackUrl,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Form {...form}>

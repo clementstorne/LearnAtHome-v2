@@ -10,7 +10,6 @@ const TasksSection = async ({ userId }: TasksSectionProps) => {
   const tasks = await getTasks(userId);
   const unfinishedTasks = filterUnfinishedTasks(tasks);
   const numberOfUnfinishedTasks = countUnfinishedTasks(tasks);
-
   return (
     <section>
       <h2>
