@@ -1,5 +1,7 @@
 "use client";
 
+import { signIn } from "next-auth/react";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -56,7 +58,11 @@ const LoginForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      callbackUrl: "/dashboard",
+    });
   }
 
   return (

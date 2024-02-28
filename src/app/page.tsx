@@ -11,6 +11,7 @@ export default function Home() {
         alt="Learn@Home - Guide éducatif en ligne pour tous"
         width={450}
         height={320}
+        priority={true}
       />
       <nav className="flex flex-row flex-nowrap justify-between items-center">
         <LinkButton

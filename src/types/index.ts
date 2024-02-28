@@ -1,3 +1,12 @@
+export interface UserDB {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  imageUrl: string;
+  role: "tutor" | "student";
+}
+
 export interface UserData {
   id: string;
   name: string;
