@@ -66,6 +66,7 @@ const LoginForm = () => {
         email: values.email,
         password: values.password,
         callbackUrl,
+        // callbackUrl: "/dashboard",
       });
     } catch (error) {
       console.error(error);

@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Learn@Home - Plateforme de Soutien Scolaire en Ligne
 
-## Getting Started
+Bienvenue sur la plateforme Learn@Home, une initiative visant à faciliter le soutien scolaire en ligne pour les élèves en difficulté et les bénévoles désireux de les aider. Notre objectif est de permettre à tout élève, où qu'il soit, d'accéder à un soutien scolaire de qualité à distance.
 
-First, run the development server:
+## Objectif
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Learn@Home vise à mettre en relation des élèves en difficulté scolaire avec des bénévoles prêts à les aider dans leur apprentissage. Chaque élève inscrit sur le site se voit assigner un tuteur bénévole qui l'accompagnera dans son parcours éducatif à travers des rendez-vous hebdomadaires en ligne. Ces séances visent à aider l'élève à réaliser ses devoirs, à comprendre les concepts difficiles et à s'organiser pour réussir.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Fonctionnalités
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+La plateforme Learn@Home est composée des pages suivantes :
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Page de Connexion** : Permet aux utilisateurs de se connecter à leur compte pour accéder à leur tableau de bord.
 
-## Learn More
+2. **Tableau de Bord** : Offre une vue d'ensemble personnalisée des rendez-vous à venir, des tâches à accomplir et des dernières communications.
 
-To learn more about Next.js, take a look at the following resources:
+3. **Interface de Chat** : Permet aux élèves et aux bénévoles de communiquer en temps réel pour poser des questions, discuter des sujets d'étude et planifier des rendez-vous.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Calendrier** : Affiche les rendez-vous prévus et permet de planifier de nouveaux rendez-vous en ligne.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+5. **Gestion des Tâches** : Permet aux élèves et aux bénévoles de gérer leurs tâches d'apprentissage, de définir des objectifs et de suivre leur progression.
 
-## Deploy on Vercel
+## Technologies Utilisées
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Frontend** : TypeScript, Next.js, Tailwind CSS
+- **Backend** : Next.js, Prisma, PostgreSQL
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Installation
+
+Pour installer et exécuter localement Learn@Home, suivez ces étapes :
+
+1. Clonez ce dépôt sur votre machine locale.
+2. Assurez-vous d'avoir Node.js et PostgreSQL installés sur votre système.
+3. Exécutez `npm install` dans le répertoire racine pour installer les dépendances.
+4. Configurez les variables d'environnement nécessaires, telles que les clés d'API et les paramètres de connexion à la base de données.
+5. Exécutez `npm run dev` pour démarrer l'application en mode développement.
+
+## Contributions
+
+Les contributions à Learn@Home sont les bienvenues ! Si vous souhaitez contribuer au développement de la plateforme, veuillez soumettre une demande de tirage (pull request) et nous examinerons votre proposition.
+
+---
+
+Merci d'utiliser Learn@Home pour soutenir l'éducation et offrir des opportunités d'apprentissage à tous les élèves, partout dans le monde !
