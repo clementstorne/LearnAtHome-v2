@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -73,6 +74,11 @@ const formSchema = z
         (value) => /(?=.*[\W|_])/.test(value),
         "Le mot de passe doit contenir au moins un caractère spécial"
       ),
+    role: z
+      .string({
+        required_error: "Veuillez choisir une option",
+      })
+      .min(1, "Veuillez choisir une option"),
   })
   .refine(
     (values) => {
@@ -92,6 +98,7 @@ const SignupForm = () => {
       email: "",
       password: "",
       confirmPassword: "",
+      role: "student",
     },
   });
 
@@ -172,6 +179,37 @@ const SignupForm = () => {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="role"
+          render={({ field }) => (
+            <FormItem className="space-y-3">
+              <FormLabel className="ml-2">Rôle</FormLabel>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex flex-row justify-around w-80"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="student" />
+                    </FormControl>
+                    <FormLabel className="font-normal">Élève</FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="tutor" />
+                    </FormControl>
+                    <FormLabel className="font-normal">Tuteur</FormLabel>
+                  </FormItem>
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         <Button type="submit" className="w-60 !m-16">
           S&apos;inscrire
         </Button>
