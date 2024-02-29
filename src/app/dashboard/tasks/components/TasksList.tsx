@@ -1,5 +1,9 @@
+import { authOptions } from "@/lib/auth";
 import { getTasksFromTaskListId } from "@/lib/dataTask";
-import { getUserNameAndAvatar } from "@/lib/dataUser";
+import { getUser } from "@/lib/dataUser";
+import { UserData } from "@/types";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import TaskListTitle from "./TaskListTitle";
 
 type TaskListProps = {
@@ -9,13 +13,22 @@ type TaskListProps = {
 
 const TaskList = async ({ userId, taskListId }: TaskListProps) => {
   const tasks = await getTasksFromTaskListId(taskListId);
-  const user = await getUserNameAndAvatar(userId);
+  const creator = await getUser(userId);
 
-  return (
-    <>
-      <TaskListTitle user={user} tasks={tasks} />
-    </>
-  );
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    redirect("/login");
+  } else {
+    const user = session?.user as UserData;
+    const userData = { id: user.id, role: user.role };
+
+    return (
+      <>
+        <TaskListTitle creator={creator} tasks={tasks} user={userData} />
+      </>
+    );
+  }
 };
 
 export default TaskList;
