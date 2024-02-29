@@ -12,7 +12,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -49,6 +50,10 @@ const formSchema = z.object({
 });
 
 const LoginForm = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,17 +62,22 @@ const LoginForm = () => {
     },
   });
 
-  const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await signIn("credentials", {
+      const res = await signIn("credentials", {
         email: values.email,
         password: values.password,
         callbackUrl,
-        // callbackUrl: "/dashboard",
+        redirect: false,
       });
+
+      if (res?.ok && res.url) {
+        router.push(res?.url);
+      } else {
+        setErrorMessage("L'email et/ou le mot de passe sont incorrects");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -105,6 +115,11 @@ const LoginForm = () => {
             </FormItem>
           )}
         />
+        {errorMessage && (
+          <p className="text-sm font-medium text-red-700 dark:text-red-900 !mt-16">
+            {errorMessage}
+          </p>
+        )}
         <Button type="submit" className="w-60 !m-16">
           Se connecter
         </Button>
