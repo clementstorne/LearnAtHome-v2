@@ -1,5 +1,6 @@
 "use client";
 
+import UsersService from "@/app/services/UsersService";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -11,9 +12,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { NewUserBody } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+
+const UserRoleEnum = z.enum(["tutor", "student"]);
+type UserRoleEnum = z.infer<typeof UserRoleEnum>;
 
 const formSchema = z
   .object({
@@ -74,11 +81,7 @@ const formSchema = z
         (value) => /(?=.*[\W|_])/.test(value),
         "Le mot de passe doit contenir au moins un caractère spécial"
       ),
-    role: z
-      .string({
-        required_error: "Veuillez choisir une option",
-      })
-      .min(1, "Veuillez choisir une option"),
+    role: UserRoleEnum,
   })
   .refine(
     (values) => {
@@ -91,6 +94,8 @@ const formSchema = z
   );
 
 const SignupForm = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -102,9 +107,26 @@ const SignupForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const { name, email, password, role }: NewUserBody = values;
+    try {
+      const res = await UsersService.createUser({
+        name,
+        email,
+        password,
+        role,
+      });
+      if (res.status === 201) {
+        signIn(undefined, { callbackUrl: "/dashboard" });
+      }
+    } catch (error: any) {
+      if (error.response.status === 409) {
+        setErrorMessage("Cet email est déjà utilisé");
+      } else {
+        console.error(error);
+      }
+    }
+  };
 
   return (
     <Form {...form}>
@@ -209,6 +231,12 @@ const SignupForm = () => {
             </FormItem>
           )}
         />
+
+        {errorMessage && (
+          <p className="text-sm font-medium text-red-700 dark:text-red-900 !mt-16">
+            {errorMessage}
+          </p>
+        )}
 
         <Button type="submit" className="w-60 !m-16">
           S&apos;inscrire

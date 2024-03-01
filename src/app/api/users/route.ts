@@ -4,6 +4,7 @@ import {
   SERVER_ERROR,
 } from "@/lib/errorMessages";
 import prisma from "@/lib/prisma";
+import { NewUserBody } from "@/types";
 import bcrypt from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -25,13 +26,6 @@ export async function GET() {
   }
 }
 
-type NewUserBody = {
-  name: string;
-  email: string;
-  password: string;
-  role: "tutor" | "student";
-};
-
 export async function POST(req: NextRequest) {
   const { name, email, password, role }: NewUserBody = await req.json();
 
@@ -39,6 +33,7 @@ export async function POST(req: NextRequest) {
     return new NextResponse(
       JSON.stringify({
         error: MISSING_PARAMETER,
+        message: "c'est ici",
       }),
       { status: 400 }
     );

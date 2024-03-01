@@ -174,7 +174,7 @@ const ProfileForm = (userData: any) => {
           )}
         />
         <Button type="submit" className="w-60 !m-16">
-          Mondifier mon profil
+          Modifier mon profil
         </Button>
       </form>
     </Form>

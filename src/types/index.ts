@@ -21,6 +21,13 @@ export interface TaskData {
   isDone: boolean;
 }
 
+export interface NewUserBody {
+  name: string;
+  email: string;
+  password: string;
+  role: "tutor" | "student";
+}
+
 export interface NewTaskBody {
   content: string;
   taskListId: string;

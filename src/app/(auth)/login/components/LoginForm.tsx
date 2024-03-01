@@ -115,11 +115,13 @@ const LoginForm = () => {
             </FormItem>
           )}
         />
+
         {errorMessage && (
           <p className="text-sm font-medium text-red-700 dark:text-red-900 !mt-16">
             {errorMessage}
           </p>
         )}
+
         <Button type="submit" className="w-60 !m-16">
           Se connecter
         </Button>

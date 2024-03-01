@@ -11,7 +11,6 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
   pages: {
     signIn: "/login",
-    signOut: "/signout",
     newUser: "/signup",
   },
   session: {
